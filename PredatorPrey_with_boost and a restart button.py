@@ -89,10 +89,9 @@ def game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-            if event.type == pygame.KEYDOWN:
+            elif event.type == pygame.KEYDOWN:
                 if event.key == K_ESCAPE:
                     pygame.quit()
-            elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and boost_available:
                     # activate the boost
                     boost_start_time = pygame.time.get_ticks()
@@ -267,25 +266,11 @@ def game():
         pygame.draw.rect(game_window, (155, 155, 155), button_1)
         retry_text = font.render('Retry?', True, RED)
         game_window.blit(retry_text, (405, 555))
-        mx, my = pygame.mouse.get_pos()
-		
-
-		
-		
+        mx, my = pygame.mouse.get_pos()		
         if button_1.collidepoint((mx, my)):
             if click:
                 game()
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-				
-            if event.type == pygame.KEYDOWN:
-                if event.key == K_ESCAPE:
-                    pygame.quit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    click = True
         pygame.display.update()
 
 game()
