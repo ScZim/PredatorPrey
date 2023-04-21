@@ -22,7 +22,7 @@ PLAYER_SIZE = 20
 ENEMY_SIZE = 10
 ENEMY_COUNT = 45
 PREDATOR_SIZE = 30
-MIN_DISTANCE = 250
+MIN_DISTANCE = 200
 
 class Player:
     def __init__(self):
@@ -33,6 +33,8 @@ class Player:
     def draw(self):
         pygame.draw.rect(game_window, BLACK, (self.x, self.y, self.size, self.size))
 
+player = Player()
+	
 class Enemy:
     def __init__(self):
         self.x = random.randint(0, WINDOW_WIDTH - ENEMY_SIZE)
@@ -57,7 +59,7 @@ class Predator:
             #calculate distance between predator and player
             distance = math.sqrt(((self.x + self.size/2) - (self.x + PLAYER_SIZE/2))**2 + ((self.y + self.size/2) - (self.y + PLAYER_SIZE/2))**2)
             
-            if distance <= MIN_DISTANCE:
+            if distance <= MIN_DISTANCE + player.size:
                 break
 
     def draw(self):
@@ -130,7 +132,6 @@ def main_menu():
 #EASY GAME MODE        
 def game_easy():        
 # Initialize game objects
-    player = Player()
     enemies = []
     predators = []
     predator = None
@@ -365,7 +366,6 @@ def game_easy():
 #MEDIUM GAME MODE        
 def game_med():        
 # Initialize game objects
-    player = Player()
     ENEMY_COUNT = 35
     enemies = []
     predators = []
@@ -607,7 +607,6 @@ def game_hard():
     WINDOW_HEIGHT = 800
     ENEMY_COUNT = 25
     game_window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-    player = Player()
     enemies = []
     predators = []
     predator = None
