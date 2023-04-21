@@ -185,13 +185,23 @@ def game_easy():
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
             player.x -= speed
-        elif keys[pygame.K_RIGHT]:
+        if keys[pygame.K_RIGHT]:
             player.x += speed
-        elif keys[pygame.K_UP]:
+        if keys[pygame.K_UP]:
             player.y -= speed
-        elif keys[pygame.K_DOWN]:
+        if keys[pygame.K_DOWN]:
             player.y += speed
-
+	
+        # Keep player within game window
+        if player.x < 0:
+            player.x = 0
+        if player.x > WINDOW_WIDTH - player.size:
+            player.x = WINDOW_WIDTH - player.size
+        if player.y < 0:
+            player.y = 0
+        if player.y  > WINDOW_HEIGHT - player.size:
+            player.y = WINDOW_HEIGHT - player.size
+	
         # Move enemies
         for i, enemy in enumerate(enemies):
             # Determine enemy movement mode
@@ -419,7 +429,17 @@ def game_med():
             player.y -= speed
         elif keys[pygame.K_DOWN]:
             player.y += speed
-
+	
+        # Keep player within game window
+        if player.x < 0:
+            player.x = 0
+        if player.x > WINDOW_WIDTH - player.size:
+            player.x = WINDOW_WIDTH - player.size
+        if player.y < 0:
+            player.y = 0
+        if player.y  > WINDOW_HEIGHT - player.size:
+            player.y = WINDOW_HEIGHT - player.size	
+	
         # Move enemies
         for i, enemy in enumerate(enemies):
             # Determine enemy movement mode
@@ -651,6 +671,16 @@ def game_hard():
         elif keys[pygame.K_DOWN]:
             player.y += speed
 
+        # Keep player within game window
+        if player.x < 0:
+            player.x = 0
+        if player.x > WINDOW_WIDTH - player.size:
+            player.x = WINDOW_WIDTH - player.size
+        if player.y < 0:
+            player.y = 0
+        if player.y  > WINDOW_HEIGHT - player.size:
+            player.y = WINDOW_HEIGHT - player.size	
+	
         # Move enemies
         for i, enemy in enumerate(enemies):
             # Determine enemy movement mode
